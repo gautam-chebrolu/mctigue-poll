@@ -77,6 +77,65 @@ function setStatus(msg, kind = "") {
   els.status.textContent = msg || "";
 }
 
+function setupShare() {
+  const shareUrlEl = document.getElementById("shareUrl");
+  const copyBtn = document.getElementById("copyShare");
+  const shareBtn = document.getElementById("nativeShare");
+
+  if (!copyBtn || !shareBtn || !shareUrlEl) {
+    console.warn("Share UI missing. Check IDs: shareUrl, copyShare, nativeShare");
+    return;
+  }
+
+  const url = window.location.href;
+  shareUrlEl.textContent = url;
+
+  copyBtn.addEventListener("click", async () => {
+    try {
+      // Clipboard API only works on https:// (or http://localhost)
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(url);
+        setStatus("Link copied ✅", "good");
+      } else {
+        // Fallback that works basically everywhere
+        window.prompt("Copy this link:", url);
+        setStatus("Copy the link from the prompt ✅", "good");
+      }
+    } catch (e) {
+      console.error("Copy failed:", e);
+      window.prompt("Copy this link:", url);
+      setStatus("Copy the link from the prompt ✅", "good");
+    }
+  });
+
+  shareBtn.addEventListener("click", async () => {
+    try {
+      if (!navigator.share) {
+        // Fallback: just trigger copy workflow
+        window.prompt("Sharing not supported here. Copy this link:", url);
+        setStatus("Sharing not supported — copy the link ✅", "good");
+        return;
+      }
+
+      await navigator.share({
+        title: "Who does Kevin McTeague look like?",
+        text: "Vote in this live poll:",
+        url
+      });
+      setStatus("Share sheet opened ✅", "good");
+    } catch (e) {
+      // User cancel is normal; don’t show as error
+      console.log("Share cancelled or failed:", e);
+    }
+  });
+
+  // Optional: hide Share button on unsupported browsers
+  if (!navigator.share) {
+    shareBtn.style.display = "none";
+  }
+}
+
+
 function alreadyVoted() {
   return localStorage.getItem(VOTED_KEY) === "1";
 }
@@ -275,6 +334,8 @@ els.nativeShare?.addEventListener("click", async () => {
 });
 
 if (!navigator.share && els.nativeShare) els.nativeShare.style.display = "none";
+
+setupShare();
 
 }
 
