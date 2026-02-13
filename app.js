@@ -47,11 +47,13 @@ const els = {
     hasselhoff: document.getElementById("count-hasselhoff"),
     chad: document.getElementById("count-chad"),
     ferrell: document.getElementById("count-ferrell"),
+    trick: document.getElementById("count-trick"),
   },
   bars: {
     hasselhoff: document.getElementById("bar-hasselhoff"),
     chad: document.getElementById("bar-chad"),
     ferrell: document.getElementById("bar-ferrell"),
+    trick: document.getElementById("bar-trick"),
   },
   kevinPhoto: document.getElementById("kevinPhoto"),
   kevinUrl: document.getElementById("kevinUrl"),
@@ -60,6 +62,7 @@ const els = {
     hasselhoff: document.getElementById("pct-hasselhoff"),
     chad: document.getElementById("pct-chad"),
     ferrell: document.getElementById("pct-ferrell"),
+    trick: document.getElementById("pct-trick"),
   },
     shareUrl: document.getElementById("shareUrl"),
     copyShare: document.getElementById("copyShare"),
@@ -90,12 +93,14 @@ function renderResults(data) {
   const hasselhoff = safeNumber(data?.hasselhoff);
   const chad = safeNumber(data?.chad);
   const ferrell = safeNumber(data?.ferrell);
-  const total = hasselhoff + chad + ferrell;
+  const trick = safeNumber(data?.trick)
+  const total = hasselhoff + chad + ferrell + trick;
 
   // counts
   els.counts.hasselhoff.textContent = String(hasselhoff);
   els.counts.chad.textContent = String(chad);
   els.counts.ferrell.textContent = String(ferrell);
+  els.counts.trick.textContent = String(trick);
   els.totalVotes.textContent = String(total);
 
   // bars
@@ -104,14 +109,17 @@ function renderResults(data) {
     const ph = pct(hasselhoff);
     const pc = pct(chad);
     const pf = pct(ferrell);
+    const pt = pct(trick);
 
     els.bars.hasselhoff.style.width = ph + "%";
     els.bars.chad.style.width = pc + "%";
     els.bars.ferrell.style.width = pf + "%";
+    els.bars.trick.style.width = pt + "%";
 
     els.pcts.hasselhoff.textContent = ph + "%";
     els.pcts.chad.textContent = pc + "%";
     els.pcts.ferrell.textContent = pf + "%";
+    els.pcts.trick.textContent = pt + "%";
 
 }
 
