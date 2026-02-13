@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Who does Kevin McTigue look like?</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="header">
+      <h1>Who does Kevin McTigue look like?</h1>
+      <p class="sub">Vote once · Results update live</p>
+    </header>
+
+    <section class="card hero">
+      <div class="hero-left">
+        <img id="kevinPhoto" class="kevin" src="./public/mctigue.jpeg" alt="Professor Kevin McTigue" />
+        <div class="kevin-actions">
+          <label class="small">Optional: paste a Kevin photo URL</label>
+          <div class="row">
+            <input id="kevinUrl" class="input" placeholder="https://…/mctigue.jpeg" />
+            <button id="setKevinUrl" class="btn ghost" type="button">Use URL</button>
+          </div>
+          <p class="hint">Tip: If <code>./public/kevin.jpg</code> exists, it’ll be used by default.</p>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <form id="pollForm" class="poll">
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="pick" value="hasselhoff" required />
+              <div class="opt-media">
+                <img class="face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/David_Hasselhof_at_re-publica_May_2014_%28cropped%29.jpg/320px-David_Hasselhof_at_re-publica_May_2014_%28cropped%29.jpg" alt="David Hasselhoff" />
+                <div class="opt-text">
+                  <div class="opt-title">David Hasselhoff</div>
+                </div>
+              </div>
+            </label>
+
+            <label class="option">
+              <input type="radio" name="pick" value="chad" required />
+              <div class="opt-media">
+                <img class="face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/2016_RiP_Red_Hot_Chili_Peppers_-_Chad_Smith_-_by_2eight_-_DSC0184.jpg/640px-2016_RiP_Red_Hot_Chili_Peppers_-_Chad_Smith_-_by_2eight_-_DSC0184.jpg" alt="Chad Smith" />
+                <div class="opt-text">
+                  <div class="opt-title">Chad Smith</div>
+                  <div class="opt-sub">Red Hot Chili Peppers</div>
+                </div>
+              </div>
+            </label>
+
+            <label class="option">
+              <input type="radio" name="pick" value="ferrell" required />
+              <div class="opt-media">
+                <img class="face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Will_Ferrell_at_the_2024_Toronto_International_Film_Festival_5_%28cropped%29.jpg/320px-Will_Ferrell_at_the_2024_Toronto_International_Film_Festival_5_%28cropped%29.jpg" alt="Will Ferrell" />
+                <div class="opt-text">
+                  <div class="opt-title">Will Ferrell</div>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button id="voteBtn" class="btn" type="submit">Vote</button>
+            <div id="status" class="status" aria-live="polite"></div>
+          </div>
+        </form>
+
+        <section class="results">
+          <div class="results-head">
+            <h2>Live results</h2>
+            <div class="pill"><span id="totalVotes">0</span> votes</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Hasselhoff</div>
+            <div class="bar"><div id="bar-hasselhoff" class="fill"></div></div>
+            <div id="count-hasselhoff" class="bar-count">0</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Chad Smith</div>
+            <div class="bar"><div id="bar-chad" class="fill"></div></div>
+            <div id="count-chad" class="bar-count">0</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Will Ferrell</div>
+            <div class="bar"><div id="bar-ferrell" class="fill"></div></div>
+            <div id="count-ferrell" class="bar-count">0</div>
+          </div>
+
+          <p class="hint small">
+            Images: Hasselhoff :contentReference[oaicite:3]{index=3} · Chad Smith :contentReference[oaicite:4]{index=4} · Will Ferrell :contentReference[oaicite:5]{index=5}
+          </p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
