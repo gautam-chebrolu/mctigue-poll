@@ -221,3 +221,62 @@ h2{
 
 .small{font-size:12px;color:var(--muted)}
 .hint{margin:0;color:var(--muted);font-size:12px}
+
+
+/* % label inside bars */
+.fill{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding-right:8px;
+  min-width: 28px; /* so label can show even for tiny values */
+}
+
+.pct{
+  font-size:12px;
+  font-weight:700;
+  color:#ffffff;
+  mix-blend-mode: normal;
+  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+  white-space:nowrap;
+}
+
+/* Share section */
+.share{
+  margin-top:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  background:#fafafa;
+}
+
+.share-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--text);
+}
+
+.share-link{
+  margin-top:2px;
+  font-size:12px;
+  color:var(--muted);
+  max-width:520px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.share-actions{
+  display:flex;
+  gap:10px;
+}
+
+.btn.ghost{
+  background: transparent;
+  border:1px solid var(--stroke);
+  color:var(--text);
+}

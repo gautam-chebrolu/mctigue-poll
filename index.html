@@ -75,25 +75,50 @@
 
           <div class="bar-row">
             <div class="bar-label">Hasselhoff</div>
-            <div class="bar"><div id="bar-hasselhoff" class="fill"></div></div>
+                <div class="bar">
+                <div id="bar-hasselhoff" class="fill">
+                    <span id="pct-hasselhoff" class="pct">0%</span>
+                </div>
+                </div>
             <div id="count-hasselhoff" class="bar-count">0</div>
           </div>
 
           <div class="bar-row">
             <div class="bar-label">Chad Smith</div>
-            <div class="bar"><div id="bar-chad" class="fill"></div></div>
+                <div class="bar">
+                <div id="bar-chad" class="fill">
+                    <span id="pct-chad" class="pct">0%</span>
+                </div>
+                </div>
             <div id="count-chad" class="bar-count">0</div>
           </div>
 
           <div class="bar-row">
             <div class="bar-label">Will Ferrell</div>
-            <div class="bar"><div id="bar-ferrell" class="fill"></div></div>
+                <div class="bar">
+                <div id="bar-ferrell" class="fill">
+                    <span id="pct-ferrell" class="pct">0%</span>
+                </div>
+                </div>
             <div id="count-ferrell" class="bar-count">0</div>
           </div>
 
-          <p class="hint small">
+          <!-- <p class="hint small">
             Images: Hasselhoff :contentReference[oaicite:3]{index=3} · Chad Smith :contentReference[oaicite:4]{index=4} · Will Ferrell :contentReference[oaicite:5]{index=5}
-          </p>
+          </p> -->
+
+          <div class="share">
+            <div class="share-left">
+                <div class="share-title">Share this poll</div>
+                <div class="share-link" id="shareUrl"></div>
+            </div>
+
+            <div class="share-actions">
+                <button class="btn ghost" id="copyShare" type="button">Copy link</button>
+                <button class="btn" id="nativeShare" type="button">Share</button>
+            </div>
+            </div>
+
         </section>
       </div>
     </section>

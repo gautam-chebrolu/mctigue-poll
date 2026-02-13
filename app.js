@@ -56,6 +56,14 @@ const els = {
   kevinPhoto: document.getElementById("kevinPhoto"),
   kevinUrl: document.getElementById("kevinUrl"),
   setKevinUrl: document.getElementById("setKevinUrl"),
+  pcts: {
+    hasselhoff: document.getElementById("pct-hasselhoff"),
+    chad: document.getElementById("pct-chad"),
+    ferrell: document.getElementById("pct-ferrell"),
+  },
+    shareUrl: document.getElementById("shareUrl"),
+    copyShare: document.getElementById("copyShare"),
+    nativeShare: document.getElementById("nativeShare"),
 };
 
 const VOTED_KEY = "mcteague_poll_voted_v1";
@@ -91,10 +99,20 @@ function renderResults(data) {
   els.totalVotes.textContent = String(total);
 
   // bars
-  const pct = (n) => (total === 0 ? 0 : Math.round((n / total) * 100));
-  els.bars.hasselhoff.style.width = pct(hasselhoff) + "%";
-  els.bars.chad.style.width = pct(chad) + "%";
-  els.bars.ferrell.style.width = pct(ferrell) + "%";
+    const pct = (n) => (total === 0 ? 0 : Math.round((n / total) * 100));
+
+    const ph = pct(hasselhoff);
+    const pc = pct(chad);
+    const pf = pct(ferrell);
+
+    els.bars.hasselhoff.style.width = ph + "%";
+    els.bars.chad.style.width = pc + "%";
+    els.bars.ferrell.style.width = pf + "%";
+
+    els.pcts.hasselhoff.textContent = ph + "%";
+    els.pcts.chad.textContent = pc + "%";
+    els.pcts.ferrell.textContent = pf + "%";
+
 }
 
 async function ensureInitialized() {
@@ -209,6 +227,47 @@ async function main() {
   }
 
   setupKevinPhotoControls();
+
+  // Share link (uses current page URL)
+const url = window.location.href;
+if (els.shareUrl) els.shareUrl.textContent = url;
+
+// Copy link button
+els.copyShare?.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(url);
+    setStatus("Link copied ✅", "good");
+  } catch (e) {
+    // fallback
+    const ta = document.createElement("textarea");
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    setStatus("Link copied ✅", "good");
+  }
+});
+
+// Native share (mobile + supported desktop)
+els.nativeShare?.addEventListener("click", async () => {
+  if (!navigator.share) {
+    setStatus("Sharing not supported here — use Copy link.", "bad");
+    return;
+  }
+  try {
+    await navigator.share({
+      title: "Who does Kevin McTeague look like?",
+      text: "Vote in this live poll:",
+      url
+    });
+  } catch (e) {
+    // user cancelled is fine
+  }
+});
+
+if (!navigator.share && els.nativeShare) els.nativeShare.style.display = "none";
+
 }
 
 main();
